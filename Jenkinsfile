@@ -15,7 +15,6 @@ pipeline {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh '. venv/bin/activate'
                     sh 'ls'
-                    sh 'python -m flake8 --exclude=venv* --statistics'
                     sh 'python -m pytest -v --cov=calculator'
                 }
             }
