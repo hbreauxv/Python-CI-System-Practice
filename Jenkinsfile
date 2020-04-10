@@ -12,10 +12,12 @@ pipeline {
         }
         stage('tests') {
             steps {
-                sh '. venv/bin/activate'
-                sh 'ls'
-                sh 'python -m flake8 --exclude=venv* --statistics'
-                sh 'python -m pytest -v --cov=calculator'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh '. venv/bin/activate'
+                    sh 'ls'
+                    sh 'python -m flake8 --exclude=venv* --statistics'
+                    sh 'python -m pytest -v --cov=calculator'
+                }
             }
         }
     }
