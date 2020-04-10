@@ -3,11 +3,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'echo $HOME'
-                sh 'echo $WORKSPACE'
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate'
-                sh 'pip install -r requirements.txt --user'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'python3 -m venv venv'
+                    sh '. venv/bin/activate'
+                    sh 'pip install -r requirements.txt --user'
+                }
             }
         }
         stage('tests') {
