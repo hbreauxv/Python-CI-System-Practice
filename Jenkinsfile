@@ -14,8 +14,8 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh '. venv/bin/activate'
-                    sh 'flake8 --exclude=venv* --statistics'
-                    sh 'pytest -v --cov=calculator'
+                    sh 'python -m flake8 --exclude=venv* --statistics'
+                    sh 'python -m pytest -v --cov=calculator'
                 }
             }
         }
