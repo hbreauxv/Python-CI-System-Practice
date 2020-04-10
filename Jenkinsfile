@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh 'echo $HOME'
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
                 sh 'pip install -r requirements.txt --user'
