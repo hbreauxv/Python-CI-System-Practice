@@ -12,9 +12,11 @@ pipeline {
         }
         stage('tests') {
             steps {
-                sh '. venv/bin/activate'
-                sh 'flake8 --exclude=venv* --statistics'
-                sh 'pytest -v --cov=calculator'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh '. venv/bin/activate'
+                    sh 'flake8 --exclude=venv* --statistics'
+                    sh 'pytest -v --cov=calculator'
+                }
             }
         }
     }
